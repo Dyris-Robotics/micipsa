@@ -1,0 +1,21 @@
+# =====================================================================================
+# Micipsa deploy dependencies
+#
+# Dependencies that need the robot hardware or a hardware SDK to build or run
+# (drivers, vendor libraries, hardware tools).
+#
+# Import: vcs import --input micipsa_deploy.repos .
+# =====================================================================================
+repositories:
+  # =====================================================================================
+  #                                third_party/ros
+  # =====================================================================================
+  third_party/ros/realsense-ros:
+    type: git
+    url: https://github.com/Dyris-Robotics/realsense-ros.git
+    version: 9a11121700cb4780e273e34141f6402fe184321d  # realsense-ros 4.58.4, needs librealsense >= 2.58.0
+
+  third_party/ros/ydlidar_ros2_driver:
+    type: git
+    url: https://github.com/Dyris-Robotics/ydlidar_ros2_driver.git
+    version: 4ef70d3f32a85704ade0be54b214f3763b1ab3e8

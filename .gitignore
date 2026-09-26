@@ -1,0 +1,39 @@
+#########
+# VS Code
+#########
+.vscode/
+
+#################
+# ROS 2 workspace
+#################
+build/
+install/
+log/
+.colcon/
+
+#################
+# ROS 2 bag files
+#################
+*.bag
+*.bag.active
+rosbag2_*/
+
+###############################################
+# vcstool managed externals (see micipsa.repos and micipsa_deploy.repos)
+###############################################
+/third_party/ros/*
+!/third_party/ros/.gitkeep
+/third_party/libs/*
+!/third_party/libs/.gitkeep
+/utils/
+
+########
+# Python
+########
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+.venv/
+venv/
+.pytest_cache/

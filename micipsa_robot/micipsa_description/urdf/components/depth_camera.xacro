@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:include filename="realsense_d435i_camera/_d435i.urdf.xacro" /> 
+
+    <!-- ========================================================================= -->
+    <!-- Realsense sensor (robot model) -->
+    <!-- ========================================================================= -->
+    <xacro:sensor_d435i
+        parent="base_link"
+        name="${camera_name}"
+        use_nominal_extrinsics="${use_nominal_extrinsics}">
+
+        <origin
+            xyz="${camera_x_offset} ${camera_y_offset} ${camera_z_offset}"
+            rpy="${camera_rpy}"/>
+
+    </xacro:sensor_d435i>
+
+    <!-- ========================================================================= -->
+    <!-- GAZEBO SENSOR -->
+    <!-- ========================================================================= -->
+    <xacro:unless value="$(arg deploy_mode)">
+
+        <gazebo reference="${camera_name}_link">
+
+            <sensor name="${camera_name}" type="rgbd_camera">
+
+                <pose>0 0 0 0 0 0</pose>
+
+                <always_on>true</always_on>
+                <visualize>true</visualize>
+                <update_rate>15</update_rate>
+
+                <camera>
+                    <horizontal_fov>1.204</horizontal_fov>
+
+                    <image>
+                        <width>640</width>
+                        <height>480</height>
+                    </image>
+
+                    <clip>
+                        <near>0.05</near>
+                        <far>3.0</far>
+                    </clip>
+
+                </camera>
+
+                <topic>/${camera_name}/color</topic>
+                <gz_frame_id>${camera_name}_color_optical_frame</gz_frame_id>
+
+            </sensor>
+
+        </gazebo>
+
+    </xacro:unless>
+
+</robot>

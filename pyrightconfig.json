@@ -1,0 +1,15 @@
+{
+    "exclude": [
+        "serial",
+        "ydlidar_ros2_driver",
+        "realsense-ros",
+        "**/__pycache__",
+        "**/node_modules",
+        "**/.*"
+    ],
+    "extraPaths": [
+        "micipsa_robot/micipsa_common",
+    ],
+    "reportMissingImports": "none",
+    "reportAttributeAccessIssue": "none"
+}

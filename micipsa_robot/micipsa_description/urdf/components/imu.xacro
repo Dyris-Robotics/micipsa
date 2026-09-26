@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <link name="imu_link"/>
+
+    <!-- ========================================================================= -->
+    <!-- IMU JOINT -->
+    <!-- ========================================================================= -->
+
+    <joint name="imu_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="imu_link"/>
+
+        <origin
+            xyz="${imu_x_offset} ${imu_y_offset} ${imu_z_offset}"
+            rpy="${imu_rpy}"/>
+    </joint>
+
+    <!-- ========================================================================= -->
+    <!-- GAZEBO SENSOR (simulation only) -->
+    <!-- ========================================================================= -->
+
+    <xacro:unless value="$(arg deploy_mode)">
+
+        <gazebo reference="imu_link">
+
+            <sensor name="imu_sensor" type="imu">
+
+                <pose>0 0 0 0 0 0</pose>
+
+                <always_on>true</always_on>
+                <update_rate>100</update_rate>
+                <visualize>true</visualize>
+
+                <topic>imu</topic>
+                <gz_frame_id>imu_link</gz_frame_id>
+
+            </sensor>
+
+        </gazebo>
+
+    </xacro:unless>
+
+</robot>

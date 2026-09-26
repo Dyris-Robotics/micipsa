@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- UTILS -->
+    <xacro:include filename="utils/inertias_macro.xacro" />
+    <xacro:include filename="utils/materials_macro.xacro" />
+    <xacro:include filename="utils/wheel_macro.xacro"/>
+
+    <!-- ========================================================================= -->
+    <!-- BASE LINK -->
+    <!-- ========================================================================= -->
+
+    <link name="base_link">
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
+            </geometry>
+            <material name="Cyan">
+                <color rgba="0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
+            </geometry>
+        </collision>
+
+        <xacro:box_inertia
+            mass="${chassis_mass}"
+            depth="${chassis_length}"
+            width="${chassis_width}"
+            height="${chassis_height}">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:box_inertia>
+
+    </link>
+
+    <!-- BASE FOOTPRINT -->
+    <link name="base_footprint"/>
+
+    <joint name="base_joint" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+        <origin xyz="0.0 0.0 ${base_link_z_offset}" rpy="0 0 0"/>
+    </joint>
+
+    <!-- ========================================================================= -->
+    <!-- WHEELS -->
+    <!-- ========================================================================= -->
+
+    <!-- FRONT LEFT -->
+    <xacro:wheel
+        name="front_left_wheel_link"
+        joint_name="${m1_joint}"
+        x_offset="${wheel_x_offset}"
+        y_offset="${wheel_y_offset}"
+        z_offset="${wheel_z_offset}"
+    />
+
+    <!-- FRONT RIGHT -->
+    <xacro:wheel
+        name="front_right_wheel_link"
+        joint_name="${m2_joint}"
+        x_offset="${wheel_x_offset}"
+        y_offset="-${wheel_y_offset}"
+        z_offset="${wheel_z_offset}"
+    />
+
+    <!-- BACK LEFT -->
+    <xacro:wheel
+        name="back_left_wheel_link"
+        joint_name="${m3_joint}"
+        x_offset="-${wheel_x_offset}"
+        y_offset="${wheel_y_offset}"
+        z_offset="${wheel_z_offset}"
+    />
+
+    <!-- BACK RIGHT -->
+    <xacro:wheel
+        name="back_right_wheel_link"
+        joint_name="${m4_joint}"
+        x_offset="-${wheel_x_offset}"
+        y_offset="-${wheel_y_offset}"
+        z_offset="${wheel_z_offset}"
+    />
+
+    <!-- ========================================================================= -->
+    <!-- GAZEBO MATERIALS -->
+    <!-- ========================================================================= -->
+    <xacro:chassis_gazebo_material reference="base_link"/>
+
+    <xacro:wheels_gazebo_material reference="front_left_wheel_link"/>
+    <xacro:wheels_gazebo_material reference="front_right_wheel_link"/>
+    <xacro:wheels_gazebo_material reference="back_left_wheel_link"/>
+    <xacro:wheels_gazebo_material reference="back_right_wheel_link"/>
+
+</robot>

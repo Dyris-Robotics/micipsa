@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>micipsa_description</name>
+  <version>1.0.0</version>
+
+  <description>
+    Robot description package for Micipsa. Provides the complete URDF/Xacro model,
+    ros2_control configuration, and robot_state_publisher launch files for both
+    simulation and real hardware deployments.
+  </description>
+
+  <maintainer email="yousriouartsi@gmail.com">yousri</maintainer>
+  <license>TODO: License declaration</license>
+
+  <!-- ================= -->
+  <!-- Build System -->
+  <!-- ================= -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- ================= -->
+  <!-- Build Dependencies -->
+  <!-- ================= -->
+  <depend>ament_cmake_python</depend>
+
+  <!-- ================= -->
+  <!-- Runtime Dependencies -->
+  <!-- ================= -->
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>micipsa_common</exec_depend>
+
+  <!-- ================= -->
+  <!-- Test Dependencies -->
+  <!-- ================= -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+  <test_depend>ament_cmake_pytest</test_depend>
+  <test_depend>launch_testing</test_depend>
+  <test_depend>launch_testing_ament_cmake</test_depend>
+  <test_depend>launch</test_depend>
+  <test_depend>launch_ros</test_depend>
+  <test_depend>ament_cmake_ros</test_depend>
+
+  <!-- ================= -->
+  <!-- Gazebo Ressources -->
+  <!-- ================= -->
+  <export>
+    <build_type>ament_cmake</build_type>
+    <gazebo_ros gazebo_model_path="${prefix}/.." />
+  </export>
+</package>

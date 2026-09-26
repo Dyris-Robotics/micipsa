@@ -1,0 +1,74 @@
+# ======================================================================
+# NOTE: All config files referenced below are expected to be used with
+# the bringup launch file or Docker Compose. They must be defined
+# inside the config folder of the package micipsa_bringup.
+# ======================================================================
+
+settings:
+  # ======================================================================
+  #                         Common
+  # ======================================================================
+  deploy_mode: false
+  use_sim_time: true
+  enable_perception: false
+  enable_behavior: false
+  localization_mode: "mapping" # Types: mapping, localization
+  log_level: "error" # Types: info, warn, error
+
+  # ======================================================================
+  #                         Hardware
+  # ======================================================================
+  devices_config_file: devices.yaml
+
+  # ======================================================================
+  #                         Camera driver
+  # ======================================================================
+  front_camera_config_file: front_camera.yaml
+  front_camera_device_name: front_camera
+
+  # ======================================================================
+  #                         Lidar driver
+  # ======================================================================
+  base_lidar_config_file: base_lidar.yaml
+  base_lidar_device_name: base_lidar
+
+  # ======================================================================
+  #                         Actuation
+  # ======================================================================
+  ros2_control_controllers_config_file: controllers.yaml
+  twist_mux_config_file: twist_mux.yaml
+
+  # ======================================================================
+  #                         Localization
+  # ======================================================================
+  ekf_config_file: ekf.yaml
+
+  # ======================================================================
+  #                         SLAM
+  # ======================================================================
+  slam_toolbox_config_file: mapper_params_online_async.yaml
+  map_saver_config_file: map_saver.yaml
+
+  # ======================================================================
+  #                         Navigation
+  # ======================================================================
+  nav2_config_file: nav2_params.yaml
+  map_file: dock_area.yaml
+  dock_database: dock_database.yaml
+
+  # ======================================================================
+  #                         Perception
+  # ======================================================================
+  pointcloud_config_file: pointcloud.yaml
+  apriltags_config_file: apriltags.yaml
+
+  # ======================================================================
+  #                         Behavior
+  # ======================================================================
+  behavior_config_file: behavior.xml
+
+  # ======================================================================
+  #                         Simulation
+  # ======================================================================
+  headless_sim: false
+  simulation_world_file: dock_area.world
