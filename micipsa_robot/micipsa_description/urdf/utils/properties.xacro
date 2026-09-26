@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- ========================================================================= -->
+    <!-- Chassis -->
+    <!-- ========================================================================= -->
+    <xacro:property name="chassis_length" value="0.25"/>
+    <xacro:property name="chassis_width" value="0.25"/>
+    <xacro:property name="chassis_height" value="0.156"/>
+    <xacro:property name="chassis_mass" value="5.0"/>
+    <xacro:property name="base_link_z_offset" value="0.1125"/>
+
+    <!-- ========================================================================= -->
+    <!-- Wheels -->
+    <!-- ========================================================================= -->
+    <xacro:property name="wheel_mass" value="0.1"/>
+    <xacro:property name="wheel_radius" value="0.065"/>
+    <xacro:property name="wheel_width" value="0.057"/>
+    <xacro:property name="wheel_x_offset" value="0.097"/>
+    <xacro:property name="wheel_y_offset" value="0.181"/>
+    <xacro:property name="wheel_z_offset" value="-0.0475"/>
+
+    <!-- ========================================================================= -->
+    <!-- Motor ↔ Joint Mapping -->
+    <!-- ========================================================================= -->
+    <xacro:property name="m1_joint" value="front_left_wheel_joint"/>
+    <xacro:property name="m2_joint" value="front_right_wheel_joint"/>
+    <xacro:property name="m3_joint" value="back_left_wheel_joint"/>
+    <xacro:property name="m4_joint" value="back_right_wheel_joint"/>
+
+    <!-- ========================================================================= -->
+    <!-- Encoders (Hardware Configuration) -->
+    <!-- ========================================================================= -->
+    <xacro:arg name="m1_encoder_cpr_arg" default="2063"/>
+    <xacro:arg name="m2_encoder_cpr_arg" default="2063"/>
+    <xacro:arg name="m3_encoder_cpr_arg" default="2063"/>
+    <xacro:arg name="m4_encoder_cpr_arg" default="2063"/>
+
+    <xacro:property name="m1_encoder_cpr" value="$(arg m1_encoder_cpr_arg)"/>
+    <xacro:property name="m2_encoder_cpr" value="$(arg m2_encoder_cpr_arg)"/>
+    <xacro:property name="m3_encoder_cpr" value="$(arg m3_encoder_cpr_arg)"/>
+    <xacro:property name="m4_encoder_cpr" value="$(arg m4_encoder_cpr_arg)"/>
+
+    <xacro:arg name="m1_encoder_inverted_arg" default="false"/>
+    <xacro:arg name="m2_encoder_inverted_arg" default="false"/>
+    <xacro:arg name="m3_encoder_inverted_arg" default="true"/>
+    <xacro:arg name="m4_encoder_inverted_arg" default="true"/>
+
+    <xacro:property name="m1_encoder_inverted" value="$(arg m1_encoder_inverted_arg)"/>
+    <xacro:property name="m2_encoder_inverted" value="$(arg m2_encoder_inverted_arg)"/>
+    <xacro:property name="m3_encoder_inverted" value="$(arg m3_encoder_inverted_arg)"/>
+    <xacro:property name="m4_encoder_inverted" value="$(arg m4_encoder_inverted_arg)"/>
+
+    <!-- ========================================================================= -->
+    <!-- Motor Inversion (Hardware Configuration) -->
+    <!-- ========================================================================= -->
+    <xacro:arg name="m1_vel_inverted_arg" default="false"/>
+    <xacro:arg name="m2_vel_inverted_arg" default="false"/>
+    <xacro:arg name="m3_vel_inverted_arg" default="true"/>
+    <xacro:arg name="m4_vel_inverted_arg" default="true"/>
+
+    <xacro:property name="m1_vel_inverted" value="$(arg m1_vel_inverted_arg)"/>
+    <xacro:property name="m2_vel_inverted" value="$(arg m2_vel_inverted_arg)"/>
+    <xacro:property name="m3_vel_inverted" value="$(arg m3_vel_inverted_arg)"/>
+    <xacro:property name="m4_vel_inverted" value="$(arg m4_vel_inverted_arg)"/>
+
+    <!-- ========================================================================= -->
+    <!-- STM MCU (Hardware Configuration) -->
+    <!-- ========================================================================= -->
+    <xacro:arg name="mcu_serial_device_arg" default="/dev/ttyUSB0"/>
+    <xacro:arg name="mcu_baudrate_arg" default="115200"/>
+    <xacro:arg name="mcu_timeout_arg" default="2000"/>
+
+    <xacro:property name="mcu_serial_device" value="$(arg mcu_serial_device_arg)"/>
+    <xacro:property name="mcu_baudrate" value="$(arg mcu_baudrate_arg)"/>
+    <xacro:property name="mcu_timeout" value="$(arg mcu_timeout_arg)"/>
+
+    <!-- ========================================================================= -->
+    <!-- IMU -->
+    <!-- ========================================================================= -->
+    <xacro:property name="imu_x_offset" value="0.095"/>
+    <xacro:property name="imu_y_offset" value="-0.020"/>
+    <xacro:property name="imu_z_offset" value="-0.06"/>
+    <xacro:property name="imu_rpy" value="${pi} 0 ${-pi/2}"/>
+
+    <!-- ========================================================================= -->
+    <!-- Lidar -->
+    <!-- ========================================================================= -->
+    <xacro:property name="lidar_z_offset" value="0.0812"/>
+    <xacro:property name="lidar_radius" value="0.03163"/>
+    <xacro:property name="lidar_length" value="0.0175"/>
+
+    <!-- ========================================================================= -->
+    <!-- Camera -->
+    <!-- ========================================================================= -->
+    <xacro:property name="camera_name" value="front_camera"/>
+    <xacro:property name="camera_x_offset" value="0.065"/>
+    <xacro:property name="camera_y_offset" value="0.0"/>
+    <xacro:property name="camera_z_offset" value="0.0338"/>
+    <xacro:property name="camera_rpy" value="0 0 0"/>
+    <xacro:property name="use_nominal_extrinsics" value="true"/>
+
+    <!-- ========================================================================= -->
+    <!-- Drive Base -->
+    <!-- ========================================================================= -->
+    <xacro:property name="max_wheel_angular_velocity" value="5.0"/>
+
+    <!-- ========================================================================= -->
+    <!-- DGazebo ros2_control Config -->
+    <!-- ========================================================================= -->
+    <xacro:arg name="controllers_config_file_arg" default=""/>
+
+    <xacro:property name="controllers_config_file" value="$(arg controllers_config_file_arg)"/>
+
+
+</robot>

@@ -1,0 +1,23 @@
+# =====================================================================================
+# Micipsa common dependencies
+#
+# Dependencies that are needed in every mode (simulation and deploy).
+#
+# Import: vcs import --input micipsa.repos .
+# =====================================================================================
+repositories:
+  # =====================================================================================
+  #                                third_party/ros
+  # =====================================================================================
+  third_party/ros/serial:
+    type: git
+    url: https://github.com/Dyris-Robotics/serial.git
+    version: 400632585ecafd3cc80d7c0969755ece9694ee92
+
+  # =====================================================================================
+  #                                    utils
+  # =====================================================================================
+  utils:
+    type: git
+    url: https://github.com/Dyris-Robotics/utils.git
+    version: bb578d01afa7f162e0269c88e0795cf04f81cbe4

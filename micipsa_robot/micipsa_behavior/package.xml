@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>micipsa_behavior</name>
+  <version>0.0.0</version>
+  <description>Micipsa's top-level mission logic as a BehaviorTree.CPP tree, sequencing high-level actions</description>
+  <maintainer email="yousriouartsi@gmail.com">yousri</maintainer>
+  <license>TODO: License declaration</license>
+
+  <!-- ============ -->
+  <!-- Build System -->
+  <!-- ============ -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
+
+  <!-- ================== -->
+  <!-- Build Dependencies -->
+  <!-- ================== -->
+  <depend>behaviortree_cpp</depend>
+  <depend>nav2_behavior_tree</depend>
+  <depend>rclcpp</depend>
+  <depend>rclcpp_action</depend>
+  <depend>nav2_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>micipsa_common</depend>
+
+  <!-- ================= -->
+  <!-- Test Dependencies -->
+  <!-- ================= -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

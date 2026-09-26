@@ -1,0 +1,9 @@
+<library path="micipsa_hardware">
+  <class name="micipsa_hardware/RobotBaseSystem"
+         type="micipsa_hardware::RobotBaseSystem"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      Robot base hardware plugin for micipsa robot.
+    </description>
+  </class>
+</library>

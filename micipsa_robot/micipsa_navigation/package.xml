@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>micipsa_navigation</name>
+  <version>1.0.0</version>
+  <description>Configures and launches the Nav2 stack for autonomous navigation,
+    including a custom AprilTag-based dock pose detection node for docking behavior.</description>
+  <maintainer email="yousriouartsi@gmail.com">yousri</maintainer>
+  <license>TODO: License declaration</license>
+
+  <!-- ============ -->
+  <!-- Build System -->
+  <!-- ============ -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
+
+  <!-- ================= -->
+  <!-- Build Dependencies -->
+  <!-- ================= -->
+  <depend>micipsa_msgs</depend>
+
+  <!-- ==================== -->
+  <!-- Runtime Dependencies -->
+  <!-- ==================== -->
+  <!-- Navigation -->
+  <exec_depend>nav2_amcl</exec_depend>
+  <exec_depend>nav2_map_server</exec_depend>
+  <exec_depend>nav2_planner</exec_depend>
+  <exec_depend>nav2_controller</exec_depend>
+  <exec_depend>nav2_bt_navigator</exec_depend>
+  <exec_depend>nav2_smoother</exec_depend>
+  <exec_depend>nav2_behaviors</exec_depend>
+  <exec_depend>nav2_velocity_smoother</exec_depend>
+  <exec_depend>nav2_collision_monitor</exec_depend>
+  <exec_depend>nav2_lifecycle_manager</exec_depend>
+
+  <!-- Plugin libraries used in config file -->
+  <exec_depend>nav2_navfn_planner</exec_depend>
+  <exec_depend>nav2_mppi_controller</exec_depend>
+  <exec_depend>nav2_rotation_shim_controller</exec_depend>
+  <exec_depend>nav2_regulated_pure_pursuit_controller</exec_depend>
+  <exec_depend>nav2_costmap_2d</exec_depend>
+
+  <!-- Docking -->
+  <exec_depend>opennav_docking</exec_depend>
+
+  <!-- ================= -->
+  <!-- Test Dependencies -->
+  <!-- ================= -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+  <test_depend>ament_cmake_pytest</test_depend>
+  <test_depend>launch_testing_ament_cmake</test_depend>
+  <test_depend>launch_testing</test_depend>
+  <test_depend>launch</test_depend>
+  <test_depend>launch_ros</test_depend>
+  <test_depend>ament_cmake_ros</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

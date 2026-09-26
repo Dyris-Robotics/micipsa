@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:include filename="../utils/materials_macro.xacro" />
+
+    <!-- ========================================================================= -->
+    <!-- LIDAR LINK -->
+    <!-- ========================================================================= -->
+    <link name="laser_frame">
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="${lidar_radius}" length="${lidar_length}"/>
+            </geometry>
+
+            <material name="black">
+                <color rgba="0 0 0 1"/>
+            </material>
+        </visual>
+
+    </link>
+
+    <!-- ========================================================================= -->
+    <!-- JOINT -->
+    <!-- ========================================================================= -->
+    <joint name="laser_joint" type="fixed">
+        <origin xyz="0 0 ${lidar_z_offset}" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="laser_frame"/>
+    </joint>
+
+    <!-- ========================================================================= -->
+    <!-- GAZEBO SENSOR-->
+    <!-- ========================================================================= -->
+    <xacro:unless value="$(arg deploy_mode)">
+        <gazebo reference="laser_frame">
+
+            <sensor name="laser" type="gpu_lidar">
+                <pose>0 0 0 0 0 0</pose>
+                <visualize>false</visualize>
+                <update_rate>10</update_rate>
+
+                <lidar>
+                    <scan>
+                        <horizontal>
+                            <samples>1080</samples>
+                            <min_angle>-3.14</min_angle>
+                            <max_angle>3.14</max_angle>
+                            <resolution>1</resolution>
+                        </horizontal>
+                    </scan>
+
+                    <range>
+                        <min>0.12</min>
+                        <max>8</max>
+                    </range>
+                </lidar>
+
+                <topic>scan</topic>
+                <gz_frame_id>laser_frame</gz_frame_id>
+            </sensor>
+
+        </gazebo>
+
+        <xacro:lidar_gazebo_material reference="laser_frame"/>
+    </xacro:unless>
+
+</robot>

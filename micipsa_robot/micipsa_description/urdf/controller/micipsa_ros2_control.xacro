@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- ========================================================================= -->
+    <!-- SIMULATION (Gazebo) -->
+    <!-- ========================================================================= -->
+
+    <xacro:unless value="$(arg deploy_mode)">
+
+        <ros2_control name="GazeboSimSystem" type="system">
+
+            <hardware>
+                <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+            </hardware>
+
+            <joint name="${m1_joint}">
+                <command_interface name="velocity"/>
+                <state_interface name="position"/>
+                <state_interface name="velocity"/>
+            </joint>
+
+            <joint name="${m2_joint}">
+                <command_interface name="velocity"/>
+                <state_interface name="position"/>
+                <state_interface name="velocity"/>
+            </joint>
+
+            <joint name="${m3_joint}">
+                <command_interface name="velocity"/>
+                <state_interface name="position"/>
+                <state_interface name="velocity"/>
+            </joint>
+
+            <joint name="${m4_joint}">
+                <command_interface name="velocity"/>
+                <state_interface name="position"/>
+                <state_interface name="velocity"/>
+            </joint>
+
+        </ros2_control>
+
+        <gazebo>
+            <plugin name="gz_ros2_control::GazeboSimROS2ControlPlugin"
+                    filename="libgz_ros2_control-system.so">
+                <parameters>${controllers_config_file}</parameters>
+            </plugin>
+        </gazebo>
+
+    </xacro:unless>
+
+    <!-- ========================================================================= -->
+    <!-- REAL HARDWARE -->
+    <!-- ========================================================================= -->
+
+    <xacro:if value="$(arg deploy_mode)">
+
+        <ros2_control name="MicipsaBase" type="system">
+
+            <hardware>
+                <plugin>micipsa_hardware/RobotBaseSystem</plugin>
+
+                <!-- Drive Wheels -->
+                <param name="m1_joint_name">${m1_joint}</param>
+                <param name="m2_joint_name">${m2_joint}</param>
+                <param name="m3_joint_name">${m3_joint}</param>
+                <param name="m4_joint_name">${m4_joint}</param>
+
+                <param name="m1_encoder_cpr">${m1_encoder_cpr}</param>
+                <param name="m2_encoder_cpr">${m2_encoder_cpr}</param>
+                <param name="m3_encoder_cpr">${m3_encoder_cpr}</param>
+                <param name="m4_encoder_cpr">${m4_encoder_cpr}</param>
+
+                <param name="m1_vel_invert">${m1_vel_inverted}</param>
+                <param name="m2_vel_invert">${m2_vel_inverted}</param>
+                <param name="m3_vel_invert">${m3_vel_inverted}</param>
+                <param name="m4_vel_invert">${m4_vel_inverted}</param>
+
+                <param name="m1_encoder_invert">${m1_encoder_inverted}</param>
+                <param name="m2_encoder_invert">${m2_encoder_inverted}</param>
+                <param name="m3_encoder_invert">${m3_encoder_inverted}</param>
+                <param name="m4_encoder_invert">${m4_encoder_inverted}</param>
+
+                <param name="wheel_radius">${wheel_radius}</param>
+                <param name="max_wheel_angular_velocity">${max_wheel_angular_velocity}</param>
+
+                <!-- MCU -->
+                <param name="mcu_serial_device">${mcu_serial_device}</param>
+                <param name="mcu_baudrate">${mcu_baudrate}</param>
+                <param name="mcu_timeout">${mcu_timeout}</param>
+
+            </hardware>
+
+            <joint name="${m1_joint}">
+                <command_interface name="velocity"/>
+                <state_interface name="position"/>
+                <state_interface name="velocity"/>
+            </joint>
+
+            <joint name="${m2_joint}">
+                <command_interface name="velocity"/>
+                <state_interface name="position"/>
+                <state_interface name="velocity"/>
+            </joint>
+
+            <joint name="${m3_joint}">
+                <command_interface name="velocity"/>
+                <state_interface name="position"/>
+                <state_interface name="velocity"/>
+            </joint>
+
+            <joint name="${m4_joint}">
+                <command_interface name="velocity"/>
+                <state_interface name="position"/>
+                <state_interface name="velocity"/>
+            </joint>
+
+            <sensor name="imu_sensor">
+                <state_interface name="orientation.x"/>
+                <state_interface name="orientation.y"/>
+                <state_interface name="orientation.z"/>
+                <state_interface name="orientation.w"/>
+                <state_interface name="angular_velocity.x"/>
+                <state_interface name="angular_velocity.y"/>
+                <state_interface name="angular_velocity.z"/>
+                <state_interface name="linear_acceleration.x"/>
+                <state_interface name="linear_acceleration.y"/>
+                <state_interface name="linear_acceleration.z"/>
+                <param name="frame_id">imu_link</param>
+            </sensor>
+
+        </ros2_control>
+
+    </xacro:if>
+
+</robot>

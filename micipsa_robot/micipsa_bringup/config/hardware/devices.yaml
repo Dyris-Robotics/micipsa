@@ -1,0 +1,33 @@
+devices:
+  mcu:
+    stm_board:
+      port: /dev/micipsa/stm_mcu
+      baudrate: 115200
+      timeout: 2000
+  lidars:
+    base_lidar: 
+      port: /dev/micipsa/ydlidar_base_lidar
+  cameras:
+    front_camera:
+      ports:
+        depth:
+          - /dev/micipsa/realsense_depth0
+          - /dev/micipsa/realsense_depth1
+          - /dev/micipsa/realsense_depth2
+          - /dev/micipsa/realsense_depth3
+        color:
+          - /dev/micipsa/realsense_color0
+          - /dev/micipsa/realsense_color1
+  motors:
+    m1:
+      encoder_cpr: 2063
+      invert_sign: false
+    m2:
+      encoder_cpr: 2063
+      invert_sign: false
+    m3:
+      encoder_cpr: 2063
+      invert_sign: false
+    m4:
+      encoder_cpr: 2063
+      invert_sign: false

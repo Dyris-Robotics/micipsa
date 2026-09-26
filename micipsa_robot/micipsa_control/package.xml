@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>micipsa_control</name>
+  <version>1.0.0</version>
+  <description>Configures and launches the ros2_control controllers for Micipsa (DiffDriveController, JointStateBroadcaster, IMUSensorBroadcaster)
+    and the twist_mux node that arbitrates velocity command sources by priority.</description>
+  <maintainer email="yousriouartsi@gmail.com">yousri</maintainer>
+  <license>TODO: License declaration</license>
+
+  <!-- ============ -->
+  <!-- Build System -->
+  <!-- ============ -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
+
+  <!-- ==================== -->
+  <!-- Runtime Dependencies -->
+  <!-- ==================== -->
+  <exec_depend>ros2_control</exec_depend>
+  <exec_depend>ros2_controllers</exec_depend>
+  <exec_depend>twist_mux</exec_depend>
+
+  <!-- ================= -->
+  <!-- Test Dependencies -->
+  <!-- ================= -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+  <test_depend>ament_cmake_pytest</test_depend>
+  <test_depend>launch_testing_ament_cmake</test_depend>
+  <test_depend>launch_testing</test_depend>
+  <test_depend>launch</test_depend>
+  <test_depend>launch_ros</test_depend>
+  <test_depend>ament_cmake_ros</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

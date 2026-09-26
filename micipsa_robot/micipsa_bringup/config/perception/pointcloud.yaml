@@ -1,0 +1,31 @@
+pointcloud_node:
+  ros__parameters:
+    # Input / output
+    pointcloud_sensor_name: "front_camera"
+    pointcloud_input_topic: "/front_camera/depth/color/points"
+    pointcloud_world_frame: "map"
+    pointcloud_is_3d: true
+
+    # Voxel Grid
+    voxel_leaf_size: 0.05
+
+    # Crop Box
+    x_crop_min: -2.0
+    x_crop_max:  2.0
+    y_crop_min: -2.0
+    y_crop_max:  2.0
+    z_crop_min: -1.0
+    z_crop_max:  1.0
+
+    # SOR
+    sor_mean_k: 50
+    sor_stddev_multhresh: 1.0
+
+    # Plane Segmentation
+    plane_axis: "UnitX"
+    eps_angle:  0.174533
+    optimize_coefficients: true
+    model_type: "SACMODEL_PARALLEL_PLANE"
+    method_type: "SAC_RANSAC"
+    plane_max_iterations: 100
+    plane_distance_threshold: 0.02

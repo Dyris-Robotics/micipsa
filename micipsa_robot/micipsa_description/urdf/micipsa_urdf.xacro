@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="micipsa" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:arg name="deploy_mode" default="false"/>
+
+    <xacro:include filename="utils/properties.xacro"/>
+
+    <xacro:include filename="micipsa_core.xacro"/>
+
+    <xacro:include filename="components/lidar.xacro"/>
+    <xacro:include filename="components/imu.xacro"/>
+    <xacro:include filename="components/depth_camera.xacro"/>
+
+    <xacro:include filename="controller/micipsa_ros2_control.xacro"/>
+
+</robot>
